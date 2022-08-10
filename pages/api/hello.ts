@@ -2,12 +2,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
-  name: string
+  value: string
 }
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth()+1;
+  const date = now.getDate();
+  const hour = now.getHours();
+  const min = now.getMinutes();
+  const sec = now.getSeconds();
+  res.status(200).json({ value: `${year}年${month}月${date}日${hour}時${min}分${sec}秒` })
 }
